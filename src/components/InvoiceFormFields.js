@@ -6,7 +6,12 @@ import { calculateTotal } from "../utils/FinancialUtils";
 import OptionalField from "./OptionalField";
 import Title from "./Title";
 
-export default function InvoiceFormFields({ form, onFieldChange, onRemoveField }) {
+export default function InvoiceFormFields({
+	form,
+	onFieldChange,
+	onRemoveField,
+	loadingNextNumber,
+}) {
 	const [showPickupNumberField, setShowPickupNumberField] = useState(() => {
 		return "pickup_number" in form;
 	});
@@ -82,6 +87,7 @@ export default function InvoiceFormFields({ form, onFieldChange, onRemoveField }
 					type="number"
 					value={form.invoice_number ? form.invoice_number : ""}
 					onChange={(e) => handleFieldChange(e, "invoice_number")}
+					loading={loadingNextNumber}
 				/>
 			</div>
 			<div className="mb-14 sm:mb-8">

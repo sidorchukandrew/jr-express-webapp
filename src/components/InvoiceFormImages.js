@@ -11,10 +11,11 @@ export default function InvoiceFormImages({ form, onImagesChanged }) {
 				id: `item-${index}`,
 				content: (
 					<div>
-						<img src={image} height="200px" className="h-56" alt="Invoice attachment" />
+						<img src={image.dataUrl} height="200px" className="h-56" alt="Invoice attachment" />
 					</div>
 				),
-				dataUrl: image,
+				dataUrl: image.dataUrl,
+				file: image.file,
 			}));
 		}
 
@@ -44,9 +45,12 @@ export default function InvoiceFormImages({ form, onImagesChanged }) {
 							</div>
 						),
 						dataUrl: dataUrl,
+						file: file,
 					};
 					let newImagesArray = [...currentImages, draggableImage];
-					onImagesChanged(newImagesArray.map((image) => image.dataUrl));
+					onImagesChanged(
+						newImagesArray.map((image) => ({ dataUrl: image.dataUrl, file: image.file }))
+					);
 					return newImagesArray;
 				});
 			});
@@ -57,18 +61,18 @@ export default function InvoiceFormImages({ form, onImagesChanged }) {
 
 	const handleRemoveImage = (idToRemove) => {
 		let filteredImages = images.filter((image) => image.id !== idToRemove);
-		onImagesChanged(filteredImages.map((image) => image.dataUrl));
+		onImagesChanged(filteredImages.map((image) => ({ dataUrl: image.dataUrl, file: image.file })));
 		setImages(filteredImages);
 	};
 
 	const handleImagesReordered = (reorderedImages) => {
-		onImagesChanged(reorderedImages.map((image) => image.dataUrl));
+		onImagesChanged(reorderedImages.map((image) => ({ dataUrl: image.dataUrl, file: image.file })));
 		setImages(reorderedImages);
 	};
 
 	return (
 		<div className="mb-5 mt-5">
-			<Title>Images</Title>
+			<Title>Attachments</Title>
 			<input hidden ref={fileInputRef} type="file" multiple onChange={handleFilesSelected} />
 
 			<h3>

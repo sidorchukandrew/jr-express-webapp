@@ -7,6 +7,7 @@ import InvoicesIndexPage from "./pages/InvoicesIndexPage";
 import CreateInvoicePage from "./pages/CreateInvoicePage";
 import HomePage from "./pages/HomePage";
 import { useEffect } from "react";
+import InvoiceDetailPage from "./pages/InvoiceDetailPage";
 
 function App() {
 	useEffect(() => {
@@ -20,6 +21,9 @@ function App() {
 					<Switch>
 						<Route path="/invoices/new" exact>
 							<CreateInvoicePage />
+						</Route>
+						<Route path="/invoices/:id" exact>
+							<InvoiceDetailPage />
 						</Route>
 						<Route path="/invoices" exact>
 							<InvoicesIndexPage />

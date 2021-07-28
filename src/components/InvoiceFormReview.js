@@ -96,9 +96,11 @@ export default function InvoiceFormReview({ form }) {
 				</div>
 			</div>
 			<div className="mb-10">
-				<div className="font-semibold text-2xl mb-4">Images ({form.images.length})</div>
-				{form.images?.map((dataUrl, index) => (
-					<img src={dataUrl} key={index} className="mb-2" alt="Invoice attachment" />
+				<div className="font-semibold text-2xl mb-4">
+					Attachments ({form.images ? form.images.length : 0})
+				</div>
+				{form.images?.map((image, index) => (
+					<img src={image.dataUrl} key={index} className="mb-2" alt="Invoice attachment" />
 				))}
 			</div>
 		</div>
