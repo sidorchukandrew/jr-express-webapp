@@ -75,7 +75,7 @@ export default function InvoiceFormImages({ form, onImagesChanged }) {
 			<Title>Attachments</Title>
 			<input hidden ref={fileInputRef} type="file" multiple onChange={handleFilesSelected} />
 
-			<h3>
+			<h3 className="font-semibold text-xl mb-2">
 				{images.length} {images.length !== 1 ? "images" : "image"} attached
 			</h3>
 			<div className="mb-5">

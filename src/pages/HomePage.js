@@ -11,7 +11,7 @@ export default function HomePage() {
 
 	return (
 		<div className="my-8">
-			<h1>Welcome back</h1>
+			<h1 className="font-bold text-3xl mb-2">Welcome back</h1>
 
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-7">
 				<TileButton onClick={() => router.push("/invoices")}>

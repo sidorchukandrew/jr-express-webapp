@@ -30,7 +30,7 @@ export default function LoginPage() {
 
 	return (
 		<div className="max-w-3xl mx-auto py-4">
-			<h1 className="text-center">Login</h1>
+			<h1 className="text-center font-bold text-3xl mb-2">Login</h1>
 			<div className="mb-4">
 				<FormLabel className="mb-2">Name</FormLabel>
 				<Input placeholder="Name" fluid value={name} onChange={(e) => setName(e.target.value)} />

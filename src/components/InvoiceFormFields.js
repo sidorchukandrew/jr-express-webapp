@@ -172,7 +172,7 @@ export default function InvoiceFormFields({
 				/>
 			</div>
 			<div className="mb-14 sm:mb-8">
-				<h1 className="text-right">
+				<h1 className="text-right font-bold text-3xl">
 					Total: <span className="ml-2">${calculateTotalPay()}</span>
 				</h1>
 			</div>
