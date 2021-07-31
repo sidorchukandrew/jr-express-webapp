@@ -12,11 +12,11 @@ export default function EmailInvoiceModal({ open, onClose, invoice, emailSetting
 	const [emailing, setEmailing] = useState(false);
 
 	useEffect(() => {
-		if (emailSettings) {
+		if (emailSettings && open) {
 			setBody(emailSettings.default_body);
 			setSubject(emailSettings.default_subject);
 		}
-	}, [emailSettings]);
+	}, [emailSettings, open]);
 
 	const handleClose = () => {
 		setSubject("");

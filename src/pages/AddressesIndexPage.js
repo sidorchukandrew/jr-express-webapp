@@ -59,25 +59,31 @@ export default function AddressesIndexPage() {
 				Addresses
 			</Title>
 
-			<Subtitle>Bill To</Subtitle>
-			<AddressesList
-				addresses={addresses.filter((address) => address.address_type === "bill_to")}
-				onDeleted={handleAddressDeleted}
-				onEditClicked={(address) => setAddressBeingEdited(address)}
-			/>
-			<Subtitle>Pickup From</Subtitle>
-			<AddressesList
-				addresses={addresses.filter((address) => address.address_type === "pickup")}
-				onDeleted={handleAddressDeleted}
-				onEditClicked={(address) => setAddressBeingEdited(address)}
-			/>
+			<div className="mb-4">
+				<Subtitle>Bill To</Subtitle>
+				<AddressesList
+					addresses={addresses.filter((address) => address.address_type === "bill_to")}
+					onDeleted={handleAddressDeleted}
+					onEditClicked={(address) => setAddressBeingEdited(address)}
+				/>
+			</div>
+			<div className="mb-4">
+				<Subtitle>Pickup From</Subtitle>
+				<AddressesList
+					addresses={addresses.filter((address) => address.address_type === "pickup")}
+					onDeleted={handleAddressDeleted}
+					onEditClicked={(address) => setAddressBeingEdited(address)}
+				/>
+			</div>
 
-			<Subtitle>Deliver To</Subtitle>
-			<AddressesList
-				addresses={addresses.filter((address) => address.address_type === "deliver_to")}
-				onDeleted={handleAddressDeleted}
-				onEditClicked={(address) => setAddressBeingEdited(address)}
-			/>
+			<div className="mb-4">
+				<Subtitle>Deliver To</Subtitle>
+				<AddressesList
+					addresses={addresses.filter((address) => address.address_type === "deliver_to")}
+					onDeleted={handleAddressDeleted}
+					onEditClicked={(address) => setAddressBeingEdited(address)}
+				/>
+			</div>
 			<CreateAddressModal
 				open={createModalOpen}
 				onClose={() => setCreateModalOpen(false)}
