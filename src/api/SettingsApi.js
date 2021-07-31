@@ -22,10 +22,10 @@ export default class SettingsApi {
 }
 
 export function constructAuthHeader() {
-	let username = localStorage.getItem("username");
+	let name = localStorage.getItem("name");
 	let password = localStorage.getItem("password");
 
 	return {
-		Authorization: `${username}:${password}`,
+		Authorization: `${name}:${password}`,
 	};
 }
