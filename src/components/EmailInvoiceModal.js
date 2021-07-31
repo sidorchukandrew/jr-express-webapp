@@ -31,11 +31,13 @@ export default function EmailInvoiceModal({ open, onClose, invoice, emailSetting
 	}, [emailSettings, open]);
 
 	useEffect(() => {
-		return contacts.map((contact, index) => ({
-			text: contact.email,
-			value: contact.email,
-			key: index,
-		}));
+		setContactOptions(
+			contacts.map((contact, index) => ({
+				text: contact.email,
+				value: contact.email,
+				key: index,
+			}))
+		);
 	}, [contacts]);
 
 	const handleClose = () => {
