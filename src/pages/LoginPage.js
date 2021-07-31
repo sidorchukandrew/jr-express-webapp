@@ -29,7 +29,7 @@ export default function LoginPage() {
 	};
 
 	return (
-		<div className="max-w-3xl mx-auto py-4">
+		<div className="max-w-3xl mx-auto py-4 px-2">
 			<h1 className="text-center font-bold text-3xl mb-2">Login</h1>
 			<div className="mb-4">
 				<FormLabel className="mb-2">Name</FormLabel>

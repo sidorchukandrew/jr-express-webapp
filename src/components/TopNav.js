@@ -16,7 +16,7 @@ export default function TopNav() {
 		<nav>
 			<Segment inverted>
 				<Menu inverted secondary pointing>
-					<div className="flex-between w-full">
+					<div className="flex-between w-full overflow-x-auto overflow-y-hidden">
 						<div className="flex">
 							<Link to="/">
 								<Menu.Item active={pathname === "/"}>Home</Menu.Item>

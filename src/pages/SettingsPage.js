@@ -80,6 +80,7 @@ export default function SettingsPage() {
 						value={emailSettings.default_subject}
 						placeholder="Enter what you would like the default subject to be"
 						onChange={(e) => handleDefaultSubjectChange(e.target.value)}
+						className="text-lg"
 					/>
 					<FormLabel>Default Body:</FormLabel>
 					<Form>
