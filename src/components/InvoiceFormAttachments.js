@@ -43,7 +43,7 @@ export default function InvoiceFormAttachments({ form, onAttachmentsChanged }) {
 						content: (
 							<div>
 								<embed src={dataUrl} height="400px" alt="Invoice attachment" />
-								<div>Grab here</div>
+								<div className="text-center py-2 font-semibold text-gray-600">Grab here</div>
 							</div>
 						),
 						dataUrl: dataUrl,

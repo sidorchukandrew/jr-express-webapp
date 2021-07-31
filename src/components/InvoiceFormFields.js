@@ -12,6 +12,7 @@ export default function InvoiceFormFields({
 	onRemoveField,
 	loadingNextNumber,
 	addresses,
+	loadingAddresses,
 }) {
 	const [showPickupNumberField, setShowPickupNumberField] = useState(() => {
 		return "pickup_number" in form;
@@ -97,6 +98,7 @@ export default function InvoiceFormFields({
 					label="Bill To"
 					address={convertBillTo()}
 					onFieldChange={(e, fieldName) => handleFieldChange(e, "bill_to_" + fieldName)}
+					loading={loadingAddresses}
 				/>
 			</div>
 			<div className="mb-14 sm:mb-8">
@@ -137,6 +139,7 @@ export default function InvoiceFormFields({
 					label="Pick Up Address"
 					address={convertPickupAddress()}
 					onFieldChange={(e, fieldName) => handleFieldChange(e, "pickup_" + fieldName)}
+					loading={loadingAddresses}
 				/>
 			</div>
 			<div className="mb-14 sm:mb-8">
@@ -145,6 +148,7 @@ export default function InvoiceFormFields({
 					label="Delivery Address"
 					address={convertDeliveryAddress()}
 					onFieldChange={(e, fieldName) => handleFieldChange(e, "deliver_to_" + fieldName)}
+					loading={loadingAddresses}
 				/>
 			</div>
 			<div className="mb-14 sm:mb-8">

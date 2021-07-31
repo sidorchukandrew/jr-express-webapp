@@ -3,7 +3,7 @@ import FormLabel from "./FormLabel";
 import AddressSuggestions from "./AddressSuggestions";
 import { useState } from "react";
 
-export default function Address({ label, onFieldChange, address, addressSuggestions }) {
+export default function Address({ label, onFieldChange, address, addressSuggestions, loading }) {
 	const [query, setQuery] = useState("");
 
 	const handleCompanyChange = (e) => {
@@ -34,6 +34,7 @@ export default function Address({ label, onFieldChange, address, addressSuggesti
 				query={query}
 				onAddressClicked={handleAddressClicked}
 				suggestions={addressSuggestions}
+				loading={loading}
 			/>
 			<div className="mt-4 mb-2">
 				<Input

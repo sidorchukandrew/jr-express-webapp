@@ -17,11 +17,13 @@ export default function CreateInvoicePage() {
 	const [form, setForm] = useState({});
 	const [loadingNextNumber, setLoadingNextNumber] = useState(false);
 	const [addresses, setAddresses] = useState([]);
+	const [loadingAddresses, setLoadingAddresses] = useState(false);
 	const router = useHistory();
 
 	useEffect(() => {
 		async function fetchNextInvoiceNumber() {
 			setLoadingNextNumber(true);
+			setLoadingAddresses(true);
 			try {
 				let { data } = await InvoicesApi.getNextNumber();
 				setForm((f) => ({ ...f, invoice_number: data.number }));
@@ -32,6 +34,7 @@ export default function CreateInvoicePage() {
 				console.log(error);
 			} finally {
 				setLoadingNextNumber(false);
+				setLoadingAddresses(false);
 			}
 		}
 
@@ -59,6 +62,7 @@ export default function CreateInvoicePage() {
 						onRemoveField={handleRemoveField}
 						loadingNextNumber={loadingNextNumber}
 						addresses={addresses}
+						loadingAddresses={loadingAddresses}
 					/>
 				);
 			case 1:

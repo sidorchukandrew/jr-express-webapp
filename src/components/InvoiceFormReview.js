@@ -104,7 +104,8 @@ export default function InvoiceFormReview({ form }) {
 						src={attachment.dataUrl}
 						key={index}
 						className="mb-2"
-						height="400px"
+						width="100%"
+						height="800px"
 						alt="Invoice attachment"
 					/>
 				))}

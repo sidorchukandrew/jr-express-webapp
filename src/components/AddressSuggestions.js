@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Loader } from "semantic-ui-react";
 import AddressSuggestion from "./AddressSuggestion";
 
-export default function AddressSuggestions({ query, onAddressClicked, suggestions }) {
+export default function AddressSuggestions({ query, onAddressClicked, suggestions, loading }) {
 	const [selectedAddress, setSelectedAddress] = useState({});
 	const handleAddressClicked = (address) => {
 		setSelectedAddress(address);
@@ -36,9 +37,13 @@ export default function AddressSuggestions({ query, onAddressClicked, suggestion
 				addresses.length === 0 ? "h-32" : ""
 			}`}
 		>
-			{addresses.length > 0 ? (
-				addresses
-			) : (
+			{loading && (
+				<div className="w-full flex-center">
+					<Loader inline active />
+				</div>
+			)}
+			{addresses.length > 0 && !loading && addresses}
+			{addresses.length === 0 && !loading && (
 				<div className="w-full flex-center text-gray-400 text-base">No suggestions to show</div>
 			)}
 		</div>
