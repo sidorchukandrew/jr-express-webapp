@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Button, Loader } from "semantic-ui-react";
 import PaperAirplaneIcon from "@heroicons/react/outline/PaperAirplaneIcon";
+import queryString from "query-string";
 
 import Title from "../components/Title";
 import InvoicesApi from "../api/InvoicesApi";
@@ -21,6 +22,7 @@ export default function InvoiceDetailPage() {
 
 	const [emailModalOpen, setEmailModalOpen] = useState(false);
 	const { id } = useParams();
+	const queryParams = queryString.parse(useLocation().search);
 
 	useEffect(() => {
 		async function fetchInvoice() {
@@ -36,6 +38,10 @@ export default function InvoiceDetailPage() {
 			try {
 				let { data } = await SettingsApi.getEmailSettings();
 				setEmailSettings(data);
+
+				if (queryParams?.open === "email") {
+					setEmailModalOpen(true);
+				}
 			} catch (error) {
 				console.log(error);
 			}
