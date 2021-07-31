@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Loader } from "semantic-ui-react";
 import PaperAirplaneIcon from "@heroicons/react/outline/PaperAirplaneIcon";
+import DocumentTextIcon from "@heroicons/react/solid/DocumentTextIcon";
 
 import Title from "../components/Title";
 import InvoicesApi from "../api/InvoicesApi";
@@ -51,7 +52,15 @@ export default function InvoiceDetailPage() {
 				<Title button={emailButton}>Invoice #{invoice.invoice_number}</Title>
 
 				<embed src={invoice.pdf_url} width="100%" height="1200px" type="application/pdf" />
-
+				<div className="my-4">
+					<a href={invoice.pdf_url} download={`Invoice_${invoice.invoice_number}.pdf`}>
+						<Button fluid color="purple">
+							<div className="flex-center">
+								<DocumentTextIcon style={{ width: "15px" }} className="mr-3" /> Download PDF
+							</div>
+						</Button>
+					</a>
+				</div>
 				<EmailInvoiceModal
 					open={emailModalOpen}
 					onClose={() => setEmailModalOpen(false)}
