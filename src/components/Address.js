@@ -38,13 +38,13 @@ export default function Address({ address, onDeleted, onEditClicked }) {
 			<div className="flex flex-grow-0 h-full">
 				<button
 					onClick={() => onEditClicked(address)}
-					className="border-r border-gray-300 px-4 bg-gray-100 h-full transition-colors hover:bg-gray-200 focus:bg-gray-200"
+					className="border-r border-gray-300 px-4 bg-gray-100 h-full flex-grow transition-colors hover:bg-gray-200 focus:bg-gray-200"
 				>
 					<PencilIcon className="w-4" />
 				</button>
 				<button
 					onClick={handleDelete}
-					className="px-4 bg-gray-100 h-full rounded-r-sm transition-colors hover:bg-gray-200 focus:bg-gray-200"
+					className="px-4 bg-gray-100 h-full rounded-r-sm transition-colors flex-grow hover:bg-gray-200 focus:bg-gray-200"
 					disabled={deleting}
 				>
 					{deleting ? (
