@@ -49,7 +49,7 @@ export default function InvoiceDetailPage() {
 
 		fetchInvoice();
 		fetchEmailSettings();
-	}, [id]);
+	}, [id, queryParams]);
 
 	if (invoice) {
 		return (
