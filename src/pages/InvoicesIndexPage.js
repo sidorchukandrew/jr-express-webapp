@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import InvoicesApi from "../api/InvoicesApi";
 import Title from "../components/Title";
 import InvoicesTable from "../components/InvoicesTable";
-import { Button } from "semantic-ui-react";
+import { Button, Loader } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 
 export default function InvoicesIndexPage() {
 	const [invoices, setInvoices] = useState([]);
+	const [loading, setLoading] = useState(true);
 	const router = useHistory();
 	useEffect(() => {
 		async function fetchInvoices() {
@@ -16,6 +17,8 @@ export default function InvoicesIndexPage() {
 				setInvoices(data);
 			} catch (error) {
 				console.log(error);
+			} finally {
+				setLoading(false);
 			}
 		}
 
@@ -33,6 +36,7 @@ export default function InvoicesIndexPage() {
 				Invoices
 			</Title>
 			<InvoicesTable invoices={invoices} />
+			<Loader size="medium" active={loading} />
 		</div>
 	);
 }

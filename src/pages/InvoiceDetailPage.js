@@ -8,10 +8,12 @@ import Title from "../components/Title";
 import InvoicesApi from "../api/InvoicesApi";
 import EmailInvoiceModal from "../components/EmailInvoiceModal";
 import SettingsApi from "../api/SettingsApi";
+import ContactsApi from "../api/ContactsApi";
 
 export default function InvoiceDetailPage() {
 	const [invoice, setInvoice] = useState(null);
 	const [emailSettings, setEmailSettings] = useState({});
+	const [contacts, setContacts] = useState([]);
 	const [emailButton] = useState(
 		<Button onClick={() => setEmailModalOpen(true)}>
 			<div className="flex gap-2 flex-grow-0">
@@ -42,8 +44,18 @@ export default function InvoiceDetailPage() {
 			}
 		}
 
+		async function fetchContacts() {
+			try {
+				let { data } = await ContactsApi.getAll();
+				setContacts(data);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
 		fetchInvoice();
 		fetchEmailSettings();
+		fetchContacts();
 	}, [id]);
 
 	if (invoice) {
@@ -66,6 +78,7 @@ export default function InvoiceDetailPage() {
 					onClose={() => setEmailModalOpen(false)}
 					invoice={invoice}
 					emailSettings={emailSettings}
+					contacts={contacts}
 				/>
 			</div>
 		);

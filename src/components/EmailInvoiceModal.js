@@ -1,22 +1,42 @@
-import { Button, Form, Input, Modal, TextArea } from "semantic-ui-react";
+import { Button, Dropdown, Form, Input, Modal, TextArea } from "semantic-ui-react";
 import PaperAirplaneIcon from "@heroicons/react/solid/PaperAirplaneIcon";
 
 import FormLabel from "./FormLabel";
 import { useEffect, useState } from "react";
 import InvoicesApi from "../api/InvoicesApi";
 
-export default function EmailInvoiceModal({ open, onClose, invoice, emailSettings }) {
+export default function EmailInvoiceModal({ open, onClose, invoice, emailSettings, contacts }) {
 	const [subject, setSubject] = useState("");
 	const [body, setBody] = useState("");
 	const [recipient, setRecipient] = useState("");
 	const [emailing, setEmailing] = useState(false);
+	const [contactOptions, setContactOptions] = useState(() => {
+		if (contacts) {
+			return contacts.map((contact, index) => ({
+				text: contact.email,
+				value: contact.email,
+				key: index,
+			}));
+		} else {
+			return [];
+		}
+	});
 
 	useEffect(() => {
 		if (emailSettings && open) {
 			setBody(emailSettings.default_body);
 			setSubject(emailSettings.default_subject);
+			setEmailing(false);
 		}
 	}, [emailSettings, open]);
+
+	useEffect(() => {
+		return contacts.map((contact, index) => ({
+			text: contact.email,
+			value: contact.email,
+			key: index,
+		}));
+	}, [contacts]);
 
 	const handleClose = () => {
 		setSubject("");
@@ -47,12 +67,21 @@ export default function EmailInvoiceModal({ open, onClose, invoice, emailSetting
 			<Modal.Content>
 				<div className="mb-4">
 					<FormLabel className="mb-2">Recipient</FormLabel>
-					<Input
+					<Dropdown
 						fluid
-						type="email"
-						value={recipient}
-						onChange={(e) => setRecipient(e.target.value)}
+						search
 						placeholder="Email address"
+						options={contactOptions}
+						value={recipient}
+						allowAdditions
+						onChange={(e, { value }) => setRecipient(value)}
+						onAddItem={(e, { value }) =>
+							setContactOptions((currentContacts) => [
+								...currentContacts,
+								{ text: value, key: currentContacts.length + 1, value: value },
+							])
+						}
+						selection
 					/>
 				</div>
 				<div className="mb-4">
