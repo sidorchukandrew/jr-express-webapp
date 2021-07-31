@@ -49,9 +49,6 @@ export default function InvoiceFormGenerating({ form }) {
 					<Button basic fluid onClick={() => router.push(`/invoices/${invoice.id}`)}>
 						View Details
 					</Button>
-					<Button basic fluid onClick={() => router.push(`/invoices/${invoice.id}?open=email`)}>
-						Send Email
-					</Button>
 				</div>
 			</div>
 		);
