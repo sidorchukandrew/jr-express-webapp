@@ -28,3 +28,7 @@
   border: none;
   background: transparent;
 }
+
+.menu, .ui.segment {
+  border-radius: 0px !important;
+}

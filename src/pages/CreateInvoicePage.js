@@ -10,11 +10,13 @@ import FormProgress from "../components/FormProgress";
 import InvoiceFormReview from "../components/InvoiceFormReview";
 import InvoiceFormGenerating from "../components/InvoiceFormGenerating";
 import InvoicesApi from "../api/InvoicesApi";
+import AddressesApi from "../api/AddressesApi";
 
 export default function CreateInvoicePage() {
 	const [formStep, setFormStep] = useState(0);
 	const [form, setForm] = useState({});
 	const [loadingNextNumber, setLoadingNextNumber] = useState(false);
+	const [addresses, setAddresses] = useState([]);
 	const router = useHistory();
 
 	useEffect(() => {
@@ -23,6 +25,9 @@ export default function CreateInvoicePage() {
 			try {
 				let { data } = await InvoicesApi.getNextNumber();
 				setForm((f) => ({ ...f, invoice_number: data.number }));
+
+				let addressesResponse = await AddressesApi.getAll();
+				setAddresses(addressesResponse.data);
 			} catch (error) {
 				console.log(error);
 			} finally {
@@ -53,6 +58,7 @@ export default function CreateInvoicePage() {
 						onFieldChange={handleFieldChange}
 						onRemoveField={handleRemoveField}
 						loadingNextNumber={loadingNextNumber}
+						addresses={addresses}
 					/>
 				);
 			case 1:
@@ -88,7 +94,7 @@ export default function CreateInvoicePage() {
 	return (
 		<div>
 			<div className="flex">
-				<div className="lg:ml-44 w-full">
+				<div className={`${formStep < 3 ? " lg:ml-44 " : ""} w-full`}>
 					{getFormStep()}
 					{formStep < 3 && (
 						<div className="mb-5 flex-between w-full">

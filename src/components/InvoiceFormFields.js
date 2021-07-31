@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Input } from "semantic-ui-react";
-import Address from "../components/Address";
+import Address from "./AddressFields";
 import FormLabel from "../components/FormLabel";
 import { calculateTotal } from "../utils/FinancialUtils";
 import OptionalField from "./OptionalField";
@@ -11,6 +11,7 @@ export default function InvoiceFormFields({
 	onFieldChange,
 	onRemoveField,
 	loadingNextNumber,
+	addresses,
 }) {
 	const [showPickupNumberField, setShowPickupNumberField] = useState(() => {
 		return "pickup_number" in form;
@@ -92,6 +93,7 @@ export default function InvoiceFormFields({
 			</div>
 			<div className="mb-14 sm:mb-8">
 				<Address
+					addressSuggestions={addresses.filter((address) => address.address_type === "bill_to")}
 					label="Bill To"
 					address={convertBillTo()}
 					onFieldChange={(e, fieldName) => handleFieldChange(e, "bill_to_" + fieldName)}
@@ -131,6 +133,7 @@ export default function InvoiceFormFields({
 			</div>
 			<div className="mb-14 sm:mb-8">
 				<Address
+					addressSuggestions={addresses.filter((address) => address.address_type === "pickup")}
 					label="Pick Up Address"
 					address={convertPickupAddress()}
 					onFieldChange={(e, fieldName) => handleFieldChange(e, "pickup_" + fieldName)}
@@ -138,6 +141,7 @@ export default function InvoiceFormFields({
 			</div>
 			<div className="mb-14 sm:mb-8">
 				<Address
+					addressSuggestions={addresses.filter((address) => address.address_type === "deliver_to")}
 					label="Delivery Address"
 					address={convertDeliveryAddress()}
 					onFieldChange={(e, fieldName) => handleFieldChange(e, "deliver_to_" + fieldName)}

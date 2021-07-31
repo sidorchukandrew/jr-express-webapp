@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AddressSuggestion from "./AddressSuggestion";
 
-export default function AddressSuggestions({ query, onAddressClicked }) {
+export default function AddressSuggestions({ query, onAddressClicked, suggestions }) {
 	const [selectedAddress, setSelectedAddress] = useState({});
 	const handleAddressClicked = (address) => {
 		setSelectedAddress(address);
@@ -9,7 +9,7 @@ export default function AddressSuggestions({ query, onAddressClicked }) {
 	};
 
 	const filterAddressesByCompany = () => {
-		return ADDRESSES.filter((address) => {
+		return suggestions.filter((address) => {
 			if (query) {
 				let company = address.company?.toLowerCase();
 				let lowerCaseQuery = query.toLowerCase();
@@ -44,48 +44,3 @@ export default function AddressSuggestions({ query, onAddressClicked }) {
 		</div>
 	);
 }
-
-const ADDRESSES = [
-	{
-		company: "Aldi Corp",
-		street: "302 Second Street",
-		city: "Syracuse",
-		state: "NY",
-		zip: "13209",
-	},
-	{
-		company: "Wegmans",
-		street: "233 Slawson Drive",
-		city: "Camillus",
-		state: "NY",
-		zip: "13031",
-	},
-	{
-		company: "Trader Joes",
-		street: "302 Second Street",
-		city: "Syracuse",
-		state: "NY",
-		zip: "13209",
-	},
-	{
-		company: "Publix",
-		street: "233 Slawson Drive",
-		city: "Camillus",
-		state: "NY",
-		zip: "13031",
-	},
-	{
-		company: "Target",
-		street: "302 Second Street",
-		city: "Syracuse",
-		state: "NY",
-		zip: "13209",
-	},
-	{
-		company: "Walmart",
-		street: "233 Slawson Drive",
-		city: "Camillus",
-		state: "NY",
-		zip: "13031",
-	},
-];
