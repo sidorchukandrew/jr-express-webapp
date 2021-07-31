@@ -26,15 +26,19 @@ const getListStyle = (isDraggingOver) => ({
 	padding: 4,
 	overflow: "auto",
 	transition: "background 0.4s ease-in-out",
-	height: 220,
+	height: 470,
 });
 
-export default function DragAndDropImages({ images, onImagesReordered, onRemoveImage }) {
-	const [items, setItems] = useState(images);
+export default function DragAndDropAttachments({
+	attachments,
+	onAttachmentsReordered,
+	onRemoveAttachment,
+}) {
+	const [items, setItems] = useState(attachments);
 
 	useEffect(() => {
-		setItems(images);
-	}, [images]);
+		setItems(attachments);
+	}, [attachments]);
 
 	const onDragEnd = (result) => {
 		// dropped outside the list
@@ -45,7 +49,7 @@ export default function DragAndDropImages({ images, onImagesReordered, onRemoveI
 		const reorderedItems = reorder(items, result.source.index, result.destination.index);
 
 		setItems(reorderedItems);
-		onImagesReordered(reorderedItems);
+		onAttachmentsReordered(reorderedItems);
 	};
 
 	return (
@@ -68,7 +72,7 @@ export default function DragAndDropImages({ images, onImagesReordered, onRemoveI
 									>
 										<button
 											className="absolute top-right flex-center appearance-none"
-											onClick={() => onRemoveImage(item.id)}
+											onClick={() => onRemoveAttachment(item.id)}
 										>
 											<XCircleIcon style={{ width: "20px", color: "black", cursor: "pointer" }} />
 										</button>

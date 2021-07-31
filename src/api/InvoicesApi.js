@@ -9,10 +9,10 @@ export default class InvoicesApi {
 		let formData = new FormData();
 
 		for (let key of Object.keys(invoiceParams)) {
-			if (key === "images") {
-				let imageFiles = invoiceParams["images"].map((image) => image.file);
-				imageFiles.forEach((file) => {
-					formData.append(`images[]`, file);
+			if (key === "attachments") {
+				let attachmentFiles = invoiceParams["attachments"].map((attachment) => attachment.file);
+				attachmentFiles.forEach((file) => {
+					formData.append(`attachments[]`, file);
 				});
 			} else {
 				formData.append(key, invoiceParams[key]);

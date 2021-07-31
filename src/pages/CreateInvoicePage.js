@@ -5,7 +5,7 @@ import ArrowNarrowLeftIcon from "@heroicons/react/outline/ArrowNarrowLeftIcon";
 import ArrowNarrowRightIcon from "@heroicons/react/outline/ArrowNarrowRightIcon";
 
 import InvoiceFormFields from "../components/InvoiceFormFields";
-import InvoiceFormImages from "../components/InvoiceFormImages";
+import InvoiceFormAttachments from "../components/InvoiceFormAttachments";
 import FormProgress from "../components/FormProgress";
 import InvoiceFormReview from "../components/InvoiceFormReview";
 import InvoiceFormGenerating from "../components/InvoiceFormGenerating";
@@ -63,9 +63,9 @@ export default function CreateInvoicePage() {
 				);
 			case 1:
 				return (
-					<InvoiceFormImages
+					<InvoiceFormAttachments
 						form={form}
-						onImagesChanged={(images) => handleFieldChange(images, "images")}
+						onAttachmentsChanged={(attachments) => handleFieldChange(attachments, "attachments")}
 					/>
 				);
 			case 2:
@@ -124,4 +124,4 @@ export default function CreateInvoicePage() {
 	);
 }
 
-const NEXT_BUTTON_NAMES = ["Images", "Review", "Generate"];
+const NEXT_BUTTON_NAMES = ["Attachments", "Review", "Generate"];

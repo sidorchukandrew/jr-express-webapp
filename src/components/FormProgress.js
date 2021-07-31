@@ -16,7 +16,7 @@ export default function FormProgress({ currentStep, onStepClick }) {
 				</Step>
 				<Step active={currentStep === 1} onClick={() => onStepClick(1)}>
 					<Step.Content className={`${currentStep === 1 ? "text-purple-600" : ""}`}>
-						Images
+						Attachments
 					</Step.Content>
 				</Step>
 				<Step active={currentStep === 2} onClick={() => onStepClick(2)}>
