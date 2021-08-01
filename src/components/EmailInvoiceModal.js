@@ -1,4 +1,4 @@
-import { Button, Dropdown, Form, Input, Modal, TextArea } from "semantic-ui-react";
+import { Button, Checkbox, Dropdown, Form, Input, Modal, TextArea } from "semantic-ui-react";
 import PaperAirplaneIcon from "@heroicons/react/solid/PaperAirplaneIcon";
 
 import FormLabel from "./FormLabel";
@@ -9,6 +9,7 @@ export default function EmailInvoiceModal({ open, onClose, invoice, emailSetting
 	const [subject, setSubject] = useState("");
 	const [body, setBody] = useState("");
 	const [recipient, setRecipient] = useState("");
+	const [includeBcc, setIncludeBcc] = useState(true);
 	const [emailing, setEmailing] = useState(false);
 	const [contactOptions, setContactOptions] = useState(() => {
 		if (contacts) {
@@ -45,6 +46,7 @@ export default function EmailInvoiceModal({ open, onClose, invoice, emailSetting
 		setBody("");
 		setRecipient("");
 		setEmailing(false);
+		setIncludeBcc(true);
 		onClose();
 	};
 
@@ -55,12 +57,17 @@ export default function EmailInvoiceModal({ open, onClose, invoice, emailSetting
 				subject,
 				body,
 				recipient,
+				include_bcc: includeBcc,
 			};
 			await InvoicesApi.emailInvoice(invoice.id, email);
 		} catch (error) {
 			console.log(error);
 		}
 		handleClose();
+	};
+
+	const handleToggleBcc = () => {
+		setIncludeBcc((currentInclude) => !currentInclude);
 	};
 
 	return (
@@ -86,9 +93,9 @@ export default function EmailInvoiceModal({ open, onClose, invoice, emailSetting
 						selection
 					/>
 				</div>
-				<div className="mb-4">
-					<FormLabel className="mb-2">BCC</FormLabel>
-					nikolai.ososkalo@gmail.com
+				<div className="mb-4 flex">
+					<Checkbox checked={includeBcc} onChange={handleToggleBcc} />
+					<FormLabel className="ml-2 mb-2">Add nikolai.ososkalo@gmail.com as bcc? </FormLabel>
 				</div>
 				<div className="mb-4">
 					<FormLabel className="mb-2">Subject</FormLabel>
