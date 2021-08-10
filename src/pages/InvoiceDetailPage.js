@@ -9,6 +9,8 @@ import InvoicesApi from "../api/InvoicesApi";
 import EmailInvoiceModal from "../components/EmailInvoiceModal";
 import SettingsApi from "../api/SettingsApi";
 import ContactsApi from "../api/ContactsApi";
+import Subtitle from "../components/Subtitle";
+import EmailsTable from "../components/EmailsTable";
 
 export default function InvoiceDetailPage() {
 	const [invoice, setInvoice] = useState(null);
@@ -58,6 +60,20 @@ export default function InvoiceDetailPage() {
 		fetchContacts();
 	}, [id]);
 
+	const handleEmailed = (emailJustSent) => {
+		setInvoice((currentInvoice) => {
+			let updatedEmails = currentInvoice.emails.map((email) => {
+				delete email.justAdded;
+				return email;
+			});
+
+			return {
+				...currentInvoice,
+				emails: [...updatedEmails, { ...emailJustSent, justAdded: true }],
+			};
+		});
+	};
+
 	if (invoice) {
 		return (
 			<div className="my-4">
@@ -73,12 +89,16 @@ export default function InvoiceDetailPage() {
 						</Button>
 					</a>
 				</div>
+
+				<Subtitle>Email Log</Subtitle>
+				<EmailsTable emails={invoice.emails} />
 				<EmailInvoiceModal
 					open={emailModalOpen}
 					onClose={() => setEmailModalOpen(false)}
 					invoice={invoice}
 					emailSettings={emailSettings}
 					contacts={contacts}
+					onEmail={handleEmailed}
 				/>
 			</div>
 		);

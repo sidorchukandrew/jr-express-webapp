@@ -5,7 +5,14 @@ import FormLabel from "./FormLabel";
 import { useEffect, useState } from "react";
 import InvoicesApi from "../api/InvoicesApi";
 
-export default function EmailInvoiceModal({ open, onClose, invoice, emailSettings, contacts }) {
+export default function EmailInvoiceModal({
+	open,
+	onClose,
+	invoice,
+	emailSettings,
+	contacts,
+	onEmail,
+}) {
 	const [subject, setSubject] = useState("");
 	const [body, setBody] = useState("");
 	const [recipient, setRecipient] = useState("");
@@ -59,11 +66,13 @@ export default function EmailInvoiceModal({ open, onClose, invoice, emailSetting
 				recipient,
 				include_bcc: includeBcc,
 			};
-			await InvoicesApi.emailInvoice(invoice.id, email);
+			let { data } = await InvoicesApi.emailInvoice(invoice.id, email);
+			onEmail(data);
 		} catch (error) {
 			console.log(error);
+		} finally {
+			handleClose();
 		}
-		handleClose();
 	};
 
 	const handleToggleBcc = () => {
