@@ -35,7 +35,7 @@ export default function Address({ address, onDeleted, onEditClicked }) {
 					{address.city} {address.state}, {address.zip}
 				</div>
 			</div>
-			<div className="flex flex-grow-0 h-full bg-red">
+			<div className="flex flex-grow-0 h-full bg-red-500">
 				<button
 					onClick={() => onEditClicked(address)}
 					className="border-r border-gray-300 px-4 bg-gray-100 h-full flex-grow transition-colors hover:bg-gray-200 focus:bg-gray-200"
