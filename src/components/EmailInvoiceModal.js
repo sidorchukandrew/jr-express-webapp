@@ -134,7 +134,7 @@ export default function EmailInvoiceModal({
 				<Button onClick={handleClose}>Cancel</Button>
 				<Button color="purple" className="group" onClick={handleSend} loading={emailing}>
 					<div className="flex">
-						<PaperAirplaneIcon className="w-4 mr-2 transform group-hover:rotate-12 transition-all" />
+						<PaperAirplaneIcon className="w-4 h-4 mr-2 transform group-hover:rotate-12 transition-all" />
 						Send
 					</div>
 				</Button>

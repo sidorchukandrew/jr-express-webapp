@@ -40,7 +40,7 @@ export default function Address({ address, onDeleted, onEditClicked }) {
 					onClick={() => onEditClicked(address)}
 					className="border-r border-gray-300 px-4 bg-gray-100 h-full flex-grow transition-colors hover:bg-gray-200 focus:bg-gray-200"
 				>
-					<PencilIcon className="w-4" />
+					<PencilIcon className="w-4 h-4" />
 				</button>
 				<button
 					onClick={handleDelete}
@@ -50,7 +50,7 @@ export default function Address({ address, onDeleted, onEditClicked }) {
 					{deleting ? (
 						<Loader size="mini" active inline />
 					) : (
-						<TrashIcon className="w-4 text-red-600" />
+						<TrashIcon className="w-4 h-4 text-red-600" />
 					)}
 				</button>
 			</div>

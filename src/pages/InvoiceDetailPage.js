@@ -20,7 +20,7 @@ export default function InvoiceDetailPage() {
 	const [emailButton] = useState(
 		<Button onClick={() => setEmailModalOpen(true)}>
 			<div className="flex gap-2 flex-grow-0">
-				<PaperAirplaneIcon className="w-4 flex-grow-0" /> Email
+				<PaperAirplaneIcon className="w-4 h-4 flex-grow-0" /> Email
 			</div>
 		</Button>
 	);
