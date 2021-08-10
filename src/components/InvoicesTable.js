@@ -1,9 +1,9 @@
 import { useHistory } from "react-router-dom";
-import { Table } from "semantic-ui-react";
+import { Checkbox, Table } from "semantic-ui-react";
 import { toShortDate } from "../utils/DateUtils";
 import { calculateTotal } from "../utils/FinancialUtils";
 
-export default function InvoicesTable({ invoices }) {
+export default function InvoicesTable({ invoices, onPaidToggled }) {
 	const router = useHistory();
 
 	return (
@@ -11,6 +11,7 @@ export default function InvoicesTable({ invoices }) {
 			<Table celled striped selectable>
 				<Table.Header>
 					<Table.Row>
+						<Table.HeaderCell>Paid</Table.HeaderCell>
 						<Table.HeaderCell>Invoice Number</Table.HeaderCell>
 						<Table.HeaderCell>Billed To</Table.HeaderCell>
 						<Table.HeaderCell>Total</Table.HeaderCell>
@@ -20,11 +21,22 @@ export default function InvoicesTable({ invoices }) {
 
 				<Table.Body>
 					{invoices.map((invoice) => (
-						<Table.Row key={invoice.id} onClick={() => router.push(`/invoices/${invoice.id}`)}>
-							<Table.Cell>{invoice.invoice_number}</Table.Cell>
-							<Table.Cell>{invoice.bill_to_company}</Table.Cell>
-							<Table.Cell>${calculateTotal(invoice)}</Table.Cell>
-							<Table.Cell>{toShortDate(invoice.created_at)}</Table.Cell>
+						<Table.Row key={invoice.id}>
+							<Table.Cell textAlign="center">
+								<Checkbox checked={invoice.is_paid} onChange={() => onPaidToggled(invoice.id)} />
+							</Table.Cell>
+							<Table.Cell onClick={() => router.push(`/invoices/${invoice.id}`)}>
+								{invoice.invoice_number}
+							</Table.Cell>
+							<Table.Cell onClick={() => router.push(`/invoices/${invoice.id}`)}>
+								{invoice.bill_to_company}
+							</Table.Cell>
+							<Table.Cell onClick={() => router.push(`/invoices/${invoice.id}`)}>
+								${calculateTotal(invoice)}
+							</Table.Cell>
+							<Table.Cell onClick={() => router.push(`/invoices/${invoice.id}`)}>
+								{toShortDate(invoice.created_at)}
+							</Table.Cell>
 						</Table.Row>
 					))}
 				</Table.Body>

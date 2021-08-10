@@ -5,6 +5,12 @@ const INVOICES_URL = process.env.REACT_APP_API_URL + "/invoices";
 export const BASE_URL = process.env.REACT_APP_API_URL;
 
 export default class InvoicesApi {
+	static updateOne(id, updates) {
+		return axios.put(`${INVOICES_URL}/${id}`, updates, {
+			headers: constructAuthHeader(),
+		});
+	}
+
 	static create(invoiceParams) {
 		let formData = new FormData();
 

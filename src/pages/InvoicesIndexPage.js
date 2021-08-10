@@ -24,6 +24,22 @@ export default function InvoicesIndexPage() {
 
 		fetchInvoices();
 	}, []);
+
+	const handlePaidToggled = async (invoiceId) => {
+		let invoiceIndex = invoices.findIndex((invoice) => invoice.id === invoiceId);
+		let invoicesCopy = [...invoices];
+
+		invoicesCopy[invoiceIndex].is_paid = !invoicesCopy[invoiceIndex].is_paid;
+		try {
+			setInvoices(invoicesCopy);
+			await InvoicesApi.updateOne(invoiceId, {
+				is_paid: invoices[invoiceIndex].is_paid,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<div className="my-4">
 			<Title
@@ -35,7 +51,7 @@ export default function InvoicesIndexPage() {
 			>
 				Invoices
 			</Title>
-			<InvoicesTable invoices={invoices} />
+			<InvoicesTable invoices={invoices} onPaidToggled={handlePaidToggled} />
 			<Loader size="medium" active={loading} />
 		</div>
 	);

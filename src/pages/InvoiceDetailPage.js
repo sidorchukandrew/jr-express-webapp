@@ -11,6 +11,7 @@ import SettingsApi from "../api/SettingsApi";
 import ContactsApi from "../api/ContactsApi";
 import Subtitle from "../components/Subtitle";
 import EmailsTable from "../components/EmailsTable";
+import PaidBadge from "../components/PaidBadge";
 
 export default function InvoiceDetailPage() {
 	const [invoice, setInvoice] = useState(null);
@@ -77,7 +78,11 @@ export default function InvoiceDetailPage() {
 	if (invoice) {
 		return (
 			<div className="my-4">
-				<Title button={emailButton}>Invoice #{invoice.invoice_number}</Title>
+				<Title button={emailButton}>
+					<span className="flex-center gap-3">
+						Invoice #{invoice.invoice_number} {invoice.is_paid && <PaidBadge />}
+					</span>
+				</Title>
 
 				<embed src={invoice.pdf_url} width="100%" height="1200px" type="application/pdf" />
 				<div className="my-4">
