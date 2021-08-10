@@ -6,3 +6,20 @@ export function calculateTotal(form) {
 
 	return total.toFixed(2);
 }
+
+export function calculateGrandTotal(invoices = []) {
+	let grandTotal = 0;
+
+	console.log(invoices[0]);
+	invoices.forEach((invoice) => {
+		if ("lumper" in invoice) {
+			grandTotal += Number.parseFloat(invoice.lumper);
+		}
+
+		if ("load_pay" in invoice) {
+			grandTotal += Number.parseFloat(invoice.load_pay);
+		}
+	});
+
+	return grandTotal.toFixed(2);
+}

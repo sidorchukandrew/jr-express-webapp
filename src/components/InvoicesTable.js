@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { Checkbox, Table } from "semantic-ui-react";
 import { toShortDate } from "../utils/DateUtils";
-import { calculateTotal } from "../utils/FinancialUtils";
+import { calculateGrandTotal, calculateTotal } from "../utils/FinancialUtils";
 
 export default function InvoicesTable({ invoices, onPaidToggled }) {
 	const router = useHistory();
@@ -40,6 +40,15 @@ export default function InvoicesTable({ invoices, onPaidToggled }) {
 						</Table.Row>
 					))}
 				</Table.Body>
+				<Table.Footer>
+					<Table.Row>
+						<Table.HeaderCell></Table.HeaderCell>
+						<Table.HeaderCell></Table.HeaderCell>
+						<Table.HeaderCell></Table.HeaderCell>
+						<Table.HeaderCell>${calculateGrandTotal(invoices)}</Table.HeaderCell>
+						<Table.HeaderCell></Table.HeaderCell>
+					</Table.Row>
+				</Table.Footer>
 			</Table>
 		</div>
 	);
