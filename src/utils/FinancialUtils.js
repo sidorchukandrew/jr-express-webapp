@@ -10,7 +10,6 @@ export function calculateTotal(form) {
 export function calculateGrandTotal(invoices = []) {
 	let grandTotal = 0;
 
-	console.log(invoices[0]);
 	invoices.forEach((invoice) => {
 		if ("lumper" in invoice) {
 			grandTotal += Number.parseFloat(invoice.lumper);

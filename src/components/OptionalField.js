@@ -12,6 +12,7 @@ export default function OptionalField({
 	type,
 }) {
 	let field = null;
+
 	if (show) {
 		field = (
 			<Input
@@ -21,6 +22,7 @@ export default function OptionalField({
 				onChange={onChange}
 				label={inputLabel}
 				type={type}
+				autoFocus
 			/>
 		);
 	}
