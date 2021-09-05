@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Input } from "semantic-ui-react";
 import Address from "./AddressFields";
 import FormLabel from "../components/FormLabel";
-import { calculateTotal } from "../utils/FinancialUtils";
+import { Input } from "semantic-ui-react";
 import OptionalField from "./OptionalField";
 import Title from "./Title";
+import { calculateTotal } from "../utils/FinancialUtils";
+import { useState } from "react";
 
 export default function InvoiceFormFields({
 	form,
@@ -86,7 +86,6 @@ export default function InvoiceFormFields({
 					label="#"
 					placeholder="Invoice number"
 					fluid
-					type="number"
 					value={form.invoice_number ? form.invoice_number : ""}
 					onChange={(e) => handleFieldChange(e, "invoice_number")}
 					loading={loadingNextNumber}
@@ -156,7 +155,6 @@ export default function InvoiceFormFields({
 				<Input
 					label="$"
 					fluid
-					type="number"
 					value={form?.load_pay ? form.load_pay : ""}
 					onChange={(e) => handleFieldChange(e, "load_pay")}
 					placeholder="Load pay"
@@ -172,7 +170,6 @@ export default function InvoiceFormFields({
 					value={form.lumper}
 					onChange={(e) => handleFieldChange(e, "lumper")}
 					inputLabel="$"
-					type="number"
 				/>
 			</div>
 			<div className="mb-14 sm:mb-8">
