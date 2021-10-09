@@ -1,28 +1,34 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { Button, Loader } from "semantic-ui-react";
-import PaperAirplaneIcon from "@heroicons/react/outline/PaperAirplaneIcon";
-import DocumentTextIcon from "@heroicons/react/solid/DocumentTextIcon";
+import { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 
-import Title from "../components/Title";
-import InvoicesApi from "../api/InvoicesApi";
-import EmailInvoiceModal from "../components/EmailInvoiceModal";
-import SettingsApi from "../api/SettingsApi";
 import ContactsApi from "../api/ContactsApi";
-import Subtitle from "../components/Subtitle";
+import DocumentTextIcon from "@heroicons/react/solid/DocumentTextIcon";
+import EmailInvoiceModal from "../components/EmailInvoiceModal";
 import EmailsTable from "../components/EmailsTable";
+import InvoicesApi from "../api/InvoicesApi";
 import PaidBadge from "../components/PaidBadge";
+import PaperAirplaneIcon from "@heroicons/react/outline/PaperAirplaneIcon";
+import SettingsApi from "../api/SettingsApi";
+import Subtitle from "../components/Subtitle";
+import Title from "../components/Title";
 
 export default function InvoiceDetailPage() {
 	const [invoice, setInvoice] = useState(null);
 	const [emailSettings, setEmailSettings] = useState({});
 	const [contacts, setContacts] = useState([]);
-	const [emailButton] = useState(
-		<Button onClick={() => setEmailModalOpen(true)}>
-			<div className="flex gap-2 flex-grow-0">
-				<PaperAirplaneIcon className="w-4 h-4 flex-grow-0" /> Email
-			</div>
-		</Button>
+	const router = useHistory();
+	const [actionButtons] = useState(
+		<div>
+			<span className="mr-4">
+				<Button onClick={() => router.push("/invoices/new")}>New invoice</Button>
+			</span>
+			<Button onClick={() => setEmailModalOpen(true)}>
+				<div className="flex gap-2 flex-grow-0">
+					<PaperAirplaneIcon className="w-4 h-4 flex-grow-0" /> Email
+				</div>
+			</Button>
+		</div>
 	);
 
 	const [emailModalOpen, setEmailModalOpen] = useState(false);
@@ -78,7 +84,7 @@ export default function InvoiceDetailPage() {
 	if (invoice) {
 		return (
 			<div className="my-4">
-				<Title button={emailButton}>
+				<Title button={actionButtons}>
 					<span className="flex-center gap-3">
 						Invoice #{invoice.invoice_number} {invoice.is_paid && <PaidBadge />}
 					</span>
