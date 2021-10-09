@@ -15,7 +15,7 @@ export default function AddressSuggestions({ query, onAddressClicked, suggestion
 				let company = address.company?.toLowerCase();
 				let lowerCaseQuery = query.toLowerCase();
 
-				return company.includes(lowerCaseQuery);
+				return company?.includes(lowerCaseQuery);
 			} else {
 				return true;
 			}
