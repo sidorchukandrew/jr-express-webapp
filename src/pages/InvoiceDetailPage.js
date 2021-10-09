@@ -1,6 +1,6 @@
 import { Button, Loader } from "semantic-ui-react";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
 
 import ContactsApi from "../api/ContactsApi";
 import DocumentTextIcon from "@heroicons/react/solid/DocumentTextIcon";
@@ -17,11 +17,12 @@ export default function InvoiceDetailPage() {
 	const [invoice, setInvoice] = useState(null);
 	const [emailSettings, setEmailSettings] = useState({});
 	const [contacts, setContacts] = useState([]);
-	const router = useHistory();
 	const [actionButtons] = useState(
 		<div>
 			<span className="mr-4">
-				<Button onClick={() => router.push("/invoices/new")}>New invoice</Button>
+				<Link to ="/invoices/new">
+					<Button color="purple">New invoice</Button>
+				</Link>
 			</span>
 			<Button onClick={() => setEmailModalOpen(true)}>
 				<div className="flex gap-2 flex-grow-0">
