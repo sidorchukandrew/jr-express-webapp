@@ -1,6 +1,7 @@
 import { Grid, Input } from "semantic-ui-react";
-import FormLabel from "./FormLabel";
+
 import AddressSuggestions from "./AddressSuggestions";
+import FormLabel from "./FormLabel";
 import { useState } from "react";
 
 export default function Address({ label, onFieldChange, address, addressSuggestions, loading }) {

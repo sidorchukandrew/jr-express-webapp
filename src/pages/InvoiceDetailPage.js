@@ -1,5 +1,5 @@
 import { Button, Loader } from "semantic-ui-react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import ContactsApi from "../api/ContactsApi";
